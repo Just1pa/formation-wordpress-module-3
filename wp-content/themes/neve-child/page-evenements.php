@@ -3,48 +3,52 @@
 Template Name: Evenements
 */
 
+// Inclure l'en-tête de page WordPress
+get_header();
 
-    // Inclure l'en-tête de page WordPress
-    get_header();
+// Récupère les événements depuis le custom post type "evenements"
+$args = array(
+    'post_type' => 'evenements',
+    'posts_per_page' => -1,
+    'order' => 'DESC',
+    'orderby' => 'date'
+);
 
-    // Début de la boucle WordPress pour afficher les événements
-    while (have_posts()) : the_post();
+$query = new WP_Query($args);
+if ($query->have_posts()) : ?>
 
-        // Récupère les événements depuis le custom post type "evenements"
-        $args = array(
-            'post_type' => 'evenements',
-            'posts_per_page' => -1,
-            'order' => 'DESC',
-            'orderby' => 'date'
-        );
+    <!-- Boucle pour afficher les événements -->
+    
 
-        $query = new WP_Query($args);
+        <div class="wp-block-cover alignfull" style="min-height:600px">
+            <span aria-hidden="true" class="wp-block-cover__background has-nv-light-bg-background-color has-background-dim-100 has-background-dim"></span>
+            <div class="wp-block-cover__inner-container">
+                <div class="is-layout-flow wp-block-group">
+                    <?php while ($query->have_posts()) : $query->the_post(); ?>
+                    <div class="wp-block-group__inner-container">
 
-        if ($query->have_posts()) : ?>
+                        <div class="is-layout-flex wp-container-6 wp-block-columns are-vertically-aligned-center">
+                            <div class="is-layout-flow wp-block-column is-vertically-aligned-center" style="flex-basis:50%">
+                                <figure class="wp-block-image size-large"><img decoding="async" width="600" height="600" src="https://justinpageaud.alwaysdata.net/save-the-earth/wp-content/uploads/2020/01/neve-web-design-bg-10.jpg" alt="" class="wp-image-37" srcset="https://justinpageaud.alwaysdata.net/save-the-earth/wp-content/uploads/2020/01/neve-web-design-bg-10.jpg 600w, https://justinpageaud.alwaysdata.net/save-the-earth/wp-content/uploads/2020/01/neve-web-design-bg-10-300x300.jpg 300w, https://justinpageaud.alwaysdata.net/save-the-earth/wp-content/uploads/2020/01/neve-web-design-bg-10-150x150.jpg 150w" sizes="(max-width: 600px) 100vw, 600px"></figure>
 
-            <!-- Boucle pour afficher les événements -->
-            <div class="evenements">
-                <?php while ($query->have_posts()) : $query->the_post(); ?>
-                    <div class="evenement">
-                        <h2><?php the_title(); ?></h2>
-                        <p><?php the_content(); ?></p>
-                        <p>Date de l'événement : <?php echo get_post_meta(get_the_ID(), 'evenement_metabox_date', true); ?></p>
-                    </div>
-                <?php endwhile; ?>
-            </div>
+                                <h3 class="has-text-align-center has-neve-text-color-color has-text-color"><?php the_title(); ?></h3>
 
-        <?php else : ?>
+                                <p class="has-text-align-center has-neve-text-color-color has-text-color"><?php the_content(); ?></p>
 
-            <p>Aucun événement à afficher.</p>
+                                <div class="is-content-justification-center is-layout-flex wp-container-2 wp-block-buttons">
+                                    <div class="wp-block-button is-style-primary">
+                                            <p style="color:black;">Date de l'événement :<?php echo get_post_meta(get_the_ID(), 'evenement_metabox_date', true); ?></p>
+                                            <a href="<?php echo get_permalink(); ?>"><button> Voir l'évènement ! 
+                                            </button></a>
+                                    </div>
+</div> <!-- Fermeture de la div .wp-block-cover__inner-container -->
 
-        <?php endif;
+</div> <!-- Fermeture de la div .wp-block-cover -->
+</div>
+</div>
+<?php endwhile; ?>
+</div>
+</div>
+</div> <!-- Fermeture de la div .site-content -->
 
-        // Réinitialiser les données de la boucle
-        wp_reset_postdata();
-
-    endwhile;
-
-    // Inclure le pied de page WordPress
-    get_footer();
-
-?>
+<?php endif; ?>
