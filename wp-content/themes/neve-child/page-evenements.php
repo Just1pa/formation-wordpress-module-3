@@ -29,7 +29,11 @@ if ($query->have_posts()) : ?>
 
                         <div class="is-layout-flex wp-container-6 wp-block-columns are-vertically-aligned-center">
                             <div class="is-layout-flow wp-block-column is-vertically-aligned-center" style="flex-basis:50%">
-                                <figure class="wp-block-image size-large"><img decoding="async" width="600" height="600" src="https://justinpageaud.alwaysdata.net/save-the-earth/wp-content/uploads/2020/01/neve-web-design-bg-10.jpg" alt="" class="wp-image-37" srcset="https://justinpageaud.alwaysdata.net/save-the-earth/wp-content/uploads/2020/01/neve-web-design-bg-10.jpg 600w, https://justinpageaud.alwaysdata.net/save-the-earth/wp-content/uploads/2020/01/neve-web-design-bg-10-300x300.jpg 300w, https://justinpageaud.alwaysdata.net/save-the-earth/wp-content/uploads/2020/01/neve-web-design-bg-10-150x150.jpg 150w" sizes="(max-width: 600px) 100vw, 600px"></figure>
+                                <figure class="wp-block-image size-large">
+                                        <?php if ( has_post_thumbnail() ) : ?>
+        <?php the_post_thumbnail( 'large', array( 'class' => 'wp-image-37' ) ); ?>
+    <?php endif; ?>
+</figure>
 
                                 <h3 class="has-text-align-center has-neve-text-color-color has-text-color"><?php the_title(); ?></h3>
 

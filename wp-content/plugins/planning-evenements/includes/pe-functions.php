@@ -14,6 +14,8 @@ function evenement_metabox_enqueue_scripts() {
     wp_enqueue_style( 'flatpickr-css', 'https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css', array(), '4.6.3' );
 }
 
+
+
 // Ajoute la meta box lorsque la fonction evenement_metabox_add_meta_box est appelée
 function evenement_metabox_add_meta_box() {
 	$post_types = array('evenements');
@@ -61,6 +63,20 @@ add_action('save_post', 'evenement_metabox_save_meta_box');
 
 // Enregistre la fonction evenement_metabox_add_meta_box lorsque les meta boxes sont initialisées
 add_action('add_meta_boxes', 'evenement_metabox_add_meta_box');
+
+function save_the_earth_event_single_template($single_template) {
+    global $post;
+
+    // Check if the post type is "evenements"
+    if ( $post->post_type == 'evenements' ) {
+
+        // Set the path to your single template file
+        $single_template = plugin_dir_path( __FILE__ ) . 'single-evenements.php';
+    }
+    return $single_template;
+}
+
+add_filter( 'single_template', 'save_the_earth_event_single_template' );
 
 
 

@@ -16,14 +16,17 @@ function save_the_earth_event(){
 		'label'=>'Evènements',
 		'public'=>true,
 		'menu_position'=>4,
-		'menu_icon'=>'dashicons-building',
+		'menu_icon'=>'dashicons-calendar',
 		'supports'=> ['title', 'editor','thumbnail'],
 		'show_in_rest'=>true,
 		'has-archive'=>true,
+		'rewrite' => array( 'slug' => 'evenements' ), 
 	]);
 }
 
 add_action('init', 'save_the_earth_event');
+
+
 
 
 ?>
