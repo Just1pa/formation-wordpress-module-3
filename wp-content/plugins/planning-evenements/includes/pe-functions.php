@@ -35,11 +35,15 @@ function evenement_metabox_add_meta_box() {
 function evenement_metabox_render($post) {
     // Récupère la valeur de la meta box enregistrée pour l'article courant
     $value = get_post_meta($post->ID, 'evenement_metabox_date', true);
-    // Affiche la meta box avec une case à cocher
+    // Affiche la meta box avec un datepicker
     ?>
 	<label for="evenement_metabox_date">Choisissez la date de l'évènement </label>
     <input class="flatpickr flatpickr-input active" type="date" id="evenement_metabox_date" name="evenement_metabox_date" value="<?php echo esc_attr( $value ); ?>" />
-    <input type="hidden" name="evenement_metabox_date_hidden" id="evenement_metabox_date_hidden" value="<?php echo esc_attr( $value ); ?>" />
+    <input type="hidden" name="evenement_metabox_date_hidden" id="evenement_metabox_date_hidden" value="<?php echo esc_attr( $value ); 
+
+
+// On enregistre le contenu dans champ caché 
+?>" />
 
     <?php
     
@@ -58,6 +62,7 @@ function evenement_metabox_save_meta_box($post_id) {
         delete_post_meta($post_id, 'evenement_metabox_date');
     }
 }
+// On Enregistre 
 add_action('save_post', 'evenement_metabox_save_meta_box');
 
 
@@ -67,15 +72,16 @@ add_action('add_meta_boxes', 'evenement_metabox_add_meta_box');
 function save_the_earth_event_single_template($single_template) {
     global $post;
 
-    // Check if the post type is "evenements"
+    // Check si le post type est  "evenements"
     if ( $post->post_type == 'evenements' ) {
 
-        // Set the path to your single template file
+        // On ajoute le chemin vers l'affichage single de l'évenement 
         $single_template = plugin_dir_path( __FILE__ ) . 'single-evenements.php';
     }
     return $single_template;
 }
 
+// On Enregistre le single template
 add_filter( 'single_template', 'save_the_earth_event_single_template' );
 
 

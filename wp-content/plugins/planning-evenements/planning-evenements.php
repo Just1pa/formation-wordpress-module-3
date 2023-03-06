@@ -5,11 +5,8 @@
  * Author: Justin Pageaud
  */
 
+// j'appelle le functions spécifique au plugin 
 require_once plugin_dir_path(__FILE__) . 'includes/pe-functions.php';
-
-
-
-
 
 
  ?>

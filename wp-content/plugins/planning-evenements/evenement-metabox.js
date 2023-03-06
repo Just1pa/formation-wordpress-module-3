@@ -1,5 +1,5 @@
 jQuery(document).ready(function($) {
-// Configuration de Flatpickr
+// Configuration de Flatpickr, cela permet d'ajouter Flatpickr + de récupérer la valeur sélectionnée dans le champ hidden
 var flatpickrConfig = {
 enableTime: true,
 dateFormat: 'dd-mm-YYYY',
